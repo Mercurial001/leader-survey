@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Survey</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'survey.css' %}">
+    <link rel="stylesheet" href="{% static 'survey-quali.css' %}">
+    <script src="{% static 'autosize.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
+</head>
+<body>
+    <header class="base-header">
+        Survey
+    </header>
+
+    {% block content %}
+        <div class="base-form-container-div">
+            <form method="POST">
+                {% csrf_token %}
+                <div>
+                    <input class="base-info-authentication-sort-input" type="text" name="respondent-name" placeholder="Name">
+                </div>
+                <div>
+                    <select class="base-info-authentication-sort-input" name="respondent-brgy">
+                        <option value="" disabled selected>Select a Barangay</option>
+                        {% for brgy in barangays %}
+                            <option value="{{ brgy.id }}">{{ brgy.brgy_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <select class="base-info-authentication-sort-input" name="respondent-gender">
+                        <option value="" selected disabled>Select a Gender</option>
+                        {% for gender in genders %}
+                        <option value="{{ gender.id }}">{{ gender.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <input class="base-info-authentication-sort-input" type="date" name="respondent-birthday">
+                </div>
+                <div>
+                    <input class="base-info-authentication-sort-input" type="number" name="respondent-contact-number" placeholder="Mobile Number">
+                </div>
+                <div>
+                    <input class="base-info-authentication-sort-input" type="text" name="respondent-facebook-account" placeholder="Facebook Account">
+                </div>
+                <div class="base-authentication-sort-form-btn-div">
+                    <button>
+                            type="submit" name="submit-respondent-btn">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    {% endblock %}
+</body>
+</html>

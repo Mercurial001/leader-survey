@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div>
+        {{ respondent.name }}
+    </div>
+    <a href="{% url 'survey-quali' respondent.id %}">Qualitative Questionnaire</a>
+    <div class="survey-form-container-div">
+        <form method="POST">
+            {% csrf_token %}
+            {% for question, options in question_option_dict.items %}
+                <div class="survey-question-loop-container-instance-div">
+                    <div class="survey-form-question-instance-div">
+                        {{ question }}
+                    </div>
+                    {% for option in options %}
+                        <div class="survey-options-instance-loop-div">
+                            <input type="checkbox" name="options" value="{{ option.id }}">
+                            {{ option.name }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="survey-quanti-form-btn-div">
+                <button class="survey-quanti-form-btn" type="submit">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

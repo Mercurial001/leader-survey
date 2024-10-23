@@ -1,0 +1,47 @@
+.survey-form-question{
+    font-size: 20px;
+    font-family: "Montserrat";
+    text-transform: capitalize;
+    font-weight: 800;
+}
+
+.survey-form-container-div{
+    margin: auto;
+    width: 55%;
+}
+
+.survey-options-instance-loop-div{
+    margin: 10px;
+}
+
+.survey-question-loop-container-instance-div{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.survey-form-question-instance-div{
+    background-color: rgb(10, 50, 50);
+    font-weight: 800;
+
+    color: beige;
+    padding: 10px;
+    text-transform: capitalize;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.survey-quanti-form-btn-div{
+    text-align: center;
+}
+
+.survey-quanti-form-btn{
+    background-color: rgb(40, 80, 80);
+    font-family: 'Montserrat';
+    color: beige;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

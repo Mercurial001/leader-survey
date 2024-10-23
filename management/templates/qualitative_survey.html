@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div>
+        <div>
+            {{ respondent.name }}
+        </div>
+        <a href="{% url 'survey' respondent.id %}">Quantitative Questionnaire</a>
+        <div class="quali-survey-form-container-div">
+            <form action="">
+                {% csrf_token %}
+                <div>
+                    UNSA AND INYO TANAW-AW NGA HINUNGDAN NGANONG NAKALUSOT AND MGA KANDIDATO SA PIKAS NIADTONG 2022 ELECTION?
+                </div>
+                <div>
+                    <textarea class="quali-form-textarea-input auto-growth" name="question-1" cols="30" rows="10">
+
+                    </textarea>
+                </div>
+                <div>
+                    UNSA ANG ANGAY BUHATON KARON?
+                </div>
+                <div>
+                    <textarea class="quali-form-textarea-input auto-growth" name="question-2" cols="30" rows="10">
+
+                    </textarea>
+                </div>
+                <div>
+                     UNSA AND INYONG ANGAY BUHATON ISIP USA LA LEADER SA BARANGAY?
+                </div>
+                <div>
+                    <textarea class="quali-form-textarea-input auto-growth" name="question-3" cols="30" rows="10">
+
+                    </textarea>
+                </div>
+                <div class="quali-form-textarea-btn-div">
+                    <button class="quali-form-btn" type="submit">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
