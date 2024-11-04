@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'survey.css' %}">
     <link rel="stylesheet" href="{% static 'survey-quali.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
     <script src="{% static 'autosize.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
 </head>
@@ -49,13 +50,64 @@
                     <input class="base-info-authentication-sort-input" type="text" name="respondent-facebook-account" placeholder="Facebook Account">
                 </div>
                 <div class="base-authentication-sort-form-btn-div">
-                    <button>
+                    <button
                             type="submit" name="submit-respondent-btn">
                         Submit
                     </button>
                 </div>
             </form>
         </div>
+
+<!--    {% for label, options in questionnaire_dict.items %}-->
+<!--        <div>-->
+<!--            {{ label }}-->
+<!--        </div>-->
+<!--        {% for option in options %}-->
+<!--            <div>-->
+<!--                {{ option }}-->
+<!--            </div>-->
+<!--        {% endfor %}-->
+<!--    {% endfor %}-->
+<!--    <div class="trier">-->
+<!--        {% for label in labeler %}-->
+<!--            <div>-->
+<!--                {{ label }}-->
+<!--            </div>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--    <div class="trier">-->
+<!--        {% for li in lista %}-->
+<!--            <div>-->
+<!--                {{ li }} %-->
+<!--            </div>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <th>-->
+<!--                    Option-->
+<!--                </th>-->
+<!--                <th>-->
+<!--                    Percentage-->
+<!--                </th>-->
+<!--                <th>-->
+<!--                    Counts-->
+<!--                </th>-->
+<!--            </tr>-->
+<!--            {% for label, percentage, count in results %}-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        {{ label }}-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        {{ percentage }} %-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        {{ count }}-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
+<!--        </table>-->
     {% endblock %}
 </body>
 </html>

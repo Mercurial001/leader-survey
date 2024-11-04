@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .dashboard-survey-respondent-count{
+            text-align:center;
+            margin: 10px;
+            font-size: 20px;
+        }
+
+        .dashboard-survey-results-container-div{
+            margin: auto;
+            width: 80%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-survey-result-table-head{
+            padding: 15px;
+        }
+
+        .dashboard-survey-question-header{
+            background-color: rgb(10, 40, 40);
+            text-transform: capitalize;
+            font-weight: 800;
+            color: beige;
+            padding: 20px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .dashboard-survey-result-table{
+            border-collapse: collapse;
+        }
+
+        .dashboard-survey-result-table-row{
+            border-top: 1px solid rgb(10, 40, 40);
+            border-bottom: 1px solid rgb(10, 40, 40);
+        }
+
+        .dashboard-survey-result-table-data{
+            padding: 10px;
+        }
+
+        .dashboard-leader-attendance-details-div{
+            display: inline-block;
+            width: 300px;
+            height:300px;
+            vertical-align: top;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            margin: 10px;
+        }
+
+        .dashboard-leader-attendance-brgy-header{
+            background-color: rgb(10, 40, 40);
+            text-align: center;
+            color: beige;
+            padding: 10px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .dashboard-leader-attendance-detail-element-div{
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .dashboard-leader-attendance-details-container-div{
+            margin: auto;
+            width: 95%;
+            padding
+        }
+
+        .dashboard-leader-attendance-date{
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .dashboard-leader-attendance-details{
+            padding: 10px;
+        }
+
+        .dashboard-leader-attendants-header{
+            margin: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .dashboard-absent-brgys-header{
+            text-align: center;
+            font-family: 'Montserrat';
+            font-size: 25px;
+        }
+
+        .dashboard-absent-brgy-container-div{
+            text-align: center;
+        }
+
+        .dashboard-absent-brgy-instance{
+            display: inline-block;
+            background-color: rgb(20, 50, 50);
+            padding: 10px;
+            border-radius: 5px;
+            color: beige;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-survey-respondent-count">
+        Respondents Count: {{ respondents_number }}
+    </div>
+
+    {% for question, options in question_option_dict.items %}
+        <div class="dashboard-survey-results-container-div">
+            <header class="dashboard-survey-question-header">
+                {{ question }}
+            </header>
+            <table class="dashboard-survey-result-table">
+                <tr class="dashboard-survey-result-table-row">
+                    <th class="dashboard-survey-result-table-head">
+                        Option
+                    </th>
+                    <th class="dashboard-survey-result-table-head">
+                        Count
+                    </th>
+                    <th class="dashboard-survey-result-table-head">
+                        Percentage
+                    </th>
+                </tr>
+                {% for option in options %}
+                    <tr class="dashboard-survey-result-table-row">
+                        <td class="dashboard-survey-result-table-data">
+                            {{ option.name }}
+                        </td>
+                        <td class="dashboard-survey-result-table-data">
+                            {{ option.counts }}
+                        </td>
+                        <td class="dashboard-survey-result-table-data">
+                            {{ option.percentage }} %
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endfor %}
+
+    {% for date, objs in brgy_leader_attendance_dict.items %}
+        <div class="dashboard-brgy-leader-attendance-container-div">
+            <header class="dashboard-leader-attendance-date">
+                {{ date }}
+            </header>
+            <div class="dashboard-leader-attendance-details-container-div">
+                {% for obj in objs %}
+                    <div class="dashboard-leader-attendance-details-div">
+                        <header class="dashboard-leader-attendance-brgy-header">
+                            {{ obj.brgy }}
+                        </header>
+                        <div class="dashboard-leader-attendance-details">
+                            <div class="dashboard-leader-attendance-detail-element-div">
+                                Attendance Count: {{ obj.count }}
+                            </div>
+                            <div class="dashboard-leader-attendance-detail-element-div">
+                                Percentage: {{ obj.percentage }} %
+                            </div>
+                            <header class="dashboard-leader-attendants-header">
+                                Attendees:
+                            </header>
+                            <div class="dashboard-leader-attendants">
+                                {% for attendant in obj.individuals.all %}
+                                    <div>
+                                        {{ attendant.name }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+    <div>
+        <header class="dashboard-absent-brgys-header">
+            Absent Barangays
+        </header>
+        <div class="dashboard-absent-brgy-container-div">
+            {% for brgy in absent_brgys %}
+                <div class="dashboard-absent-brgy-instance">
+                    {{ brgy }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

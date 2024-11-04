@@ -6,6 +6,18 @@ from .models import Survey
 from .models import QuestionQuestionnaire
 from .models import QuestionOptions
 from .models import Questionnaire
+from .models import TimeMark
+from .models import BrgyLeaderAttendance
+
+
+class TimeMarkAdmin(admin.ModelAdmin):
+    list_name = ('name',)
+
+
+class BrgyLeaderAttendanceAdmin(admin.ModelAdmin):
+    list_name = ('brgy',)
+
+
 
 
 class GenderAdmin(admin.ModelAdmin):
@@ -36,6 +48,8 @@ class BarangayAdmin(admin.ModelAdmin):
     list_display = ('brgy_name',)
 
 
+admin.site.register(TimeMark, TimeMarkAdmin)
+admin.site.register(BrgyLeaderAttendance, BrgyLeaderAttendanceAdmin)
 admin.site.register(Gender, GenderAdmin)
 admin.site.register(Respondent, RespondentAdmin)
 admin.site.register(Survey, SurveyAdmin)

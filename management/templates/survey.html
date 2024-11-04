@@ -6,6 +6,17 @@
     <div>
         {{ respondent.name }}
     </div>
+    {% if messages %}
+        {% for message in messages %}
+            <div style="text-align: center;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div>
+        <a href="{% url 'homepage' %}">Encode Back</a>
+    </div>
+
     <a href="{% url 'survey-quali' respondent.id %}">Qualitative Questionnaire</a>
     <div class="survey-form-container-div">
         <form method="POST">

@@ -14,6 +14,43 @@ class Barangay(models.Model):
         ordering = ['brgy_name']
 
 
+class Sitio(models.Model):
+    brgy = models.ForeignKey(
+        Barangay,
+        related_name='sitio_brgy',
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(max_length=255)
+
+
+class CivilStatus(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class EducationalAttainmentLevel(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class EducationalAttainment(models.Model):
+    level = models.ForeignKey(
+        EducationalAttainmentLevel,
+        on_delete=models.PROTECT
+    )
+    name = models.CharField(max_length=255)
+
+
+class Religion(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class Church(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class Occupation(models.Model):
+    name = models.CharField(max_length=255)
+
+
 class Gender(models.Model):
     name = models.CharField(max_length=100)
 
@@ -54,6 +91,8 @@ class QuestionOptions(models.Model):
         related_name='questionnaire_question'
     )
     name = models.CharField(max_length=1000)
+    percentage = models.IntegerField(default=0)
+    counts = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -79,5 +118,21 @@ class Questionnaire(models.Model):
     )
     selected_options = models.ManyToManyField(
         QuestionOptions,
+        blank=True
+    )
+
+
+class TimeMark(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class BrgyLeaderAttendance(models.Model):
+    brgy = models.ForeignKey(Barangay, related_name='brgy_leader_attendance', on_delete=models.CASCADE)
+    count = models.IntegerField(default=0)
+    percentage = models.IntegerField(default=0)
+    date = models.DateField()
+    time_mark = models.ForeignKey(TimeMark, on_delete=models.PROTECT, null=True, blank=True)
+    individuals = models.ManyToManyField(
+        Respondent,
         blank=True
     )
